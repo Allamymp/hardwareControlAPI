@@ -1,5 +1,6 @@
 package org.portfolio.hardwarecontrollerapi.service;
 
+import org.portfolio.hardwarecontrollerapi.client.EventClient;
 import org.portfolio.hardwarecontrollerapi.model.DTO.EventRequestDTO;
 import org.portfolio.hardwarecontrollerapi.model.DTO.ResponseDTO;
 import org.portfolio.hardwarecontrollerapi.model.entities.Event;
@@ -18,15 +19,18 @@ public class EventService {
     private EventRepository repository;
     @Autowired
     private HardWareRepository hardWareRepository;
+    @Autowired
+    private EventClient client;
 
     public ResponseDTO create(EventRequestDTO data) {
         Optional<Hardware> hardwareOptional = hardWareRepository.findById(data.hardwareId());
         try {
             if (hardwareOptional.isPresent()) {
-                Event event = new Event(hardwareOptional.get(), data.message(), data.date(),data.prefixType());
-                repository.save(event);
+                Event event = new Event(hardwareOptional.get(), data.message(),data.prefix(), data.endpoint());
                 hardwareOptional.get().addEvent(event);
                 hardWareRepository.save(hardwareOptional.get());
+                client.sendMessage(event);
+                repository.save(event);
                 return new ResponseDTO("Event sucessfuly created!");
             } else {
                 return new ResponseDTO("Hardware with id " + data.hardwareId() + " not found!");
@@ -36,21 +40,6 @@ public class EventService {
             return new ResponseDTO("Failed to create event!");
         }
     }
-
-    public ResponseDTO delete(long id) {
-        Optional<Event> eventOptional = repository.findById(id);
-        try {
-            if (eventOptional.isPresent()) {
-                repository.delete(eventOptional.get());
-                return new ResponseDTO("Event with id " + id + " suscessufuly deleted!");
-            } else {
-                return new ResponseDTO("Event id : " + id + " not found!");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ResponseDTO("Failed to delete event!");
-        }
-    }
     public Optional<Event> findById(long id) {
         return repository.findById(id);
     }
@@ -58,5 +47,7 @@ public class EventService {
     public List<Event> findAll() {
         return repository.findAll();
     }
+
+
 
 }

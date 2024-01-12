@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -24,15 +24,17 @@ public class Event {
     @JoinColumn(name="hardware_id")
     private Hardware hardware;
     private String message;
-    private Date date;
+    private LocalDate date;
     private boolean executed;
-    private String prefixType;
+    private String prefix;
+    private String endpoint;
 
-    public Event(Hardware hardware, String message, Date date, String prefixType) {
+    public Event(Hardware hardware, String message, String prefix, String endpoint) {
         this.hardware = hardware;
         this.message = message;
-        this.date = date;
+        this.date = LocalDate.now();
         this.executed = false;
-        this.prefixType = prefixType;
+        this.prefix = prefix;
+        this.endpoint = endpoint;
     }
 }

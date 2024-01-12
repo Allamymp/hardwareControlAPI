@@ -1,6 +1,10 @@
 package org.portfolio.hardwarecontrollerapi.model.DTO;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-public record EventRequestDTO(long id, long hardwareId, String message, Date date, String prefixType) {
+public record EventRequestDTO(long id
+        , long hardwareId
+        , String message
+        , String prefix
+        , String endpoint) {
 }

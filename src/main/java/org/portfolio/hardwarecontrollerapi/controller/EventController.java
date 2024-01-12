@@ -20,11 +20,6 @@ public class EventController {
         return ResponseEntity.ok().body(service.create(data));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable @Validated long id) {
-        return ResponseEntity.ok().body(service.delete(id));
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable @Validated long id) {
         return ResponseEntity.ok().body(service.findById(id));
