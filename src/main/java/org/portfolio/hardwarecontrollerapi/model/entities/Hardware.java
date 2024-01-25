@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
 import  java.util.List;
 
 @Entity
@@ -28,7 +30,7 @@ public class Hardware {
     private Client client;
     @OneToMany(mappedBy = "hardware", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Event> eventList;
+    private List<Event> eventList = new ArrayList<>();
 
     public Hardware(String name, String model, String address, Client client) {
         this.name = name;
