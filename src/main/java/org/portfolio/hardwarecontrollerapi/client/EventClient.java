@@ -45,7 +45,7 @@ public class EventClient {
                     client.send(request, HttpResponse.BodyHandlers.ofString());
                     event.setExecuted(true);
                 } catch (Exception e) {
-                   throw  new RuntimeException("Error sending event",e);
+                    throw  new RuntimeException("Error sending event",e);
 
                 }
             }
