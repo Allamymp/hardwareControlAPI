@@ -1,12 +1,11 @@
 package org.portfolio.hardwarecontrollerapi.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.portfolio.hardwarecontrollerapi.model.DTO.ResponseDTO;
 import org.portfolio.hardwarecontrollerapi.model.entities.Event;
 import org.portfolio.hardwarecontrollerapi.model.entities.Hardware;
+import org.portfolio.hardwarecontrollerapi.model.record.ResponseRecord;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -33,7 +32,7 @@ public class EventClient {
                 // Constroi o corpo da solicitação no formato JSON
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
-                    String json = objectMapper.writeValueAsString(new ResponseDTO(message));
+                    String json = objectMapper.writeValueAsString(new ResponseRecord(message));
 
                     HttpClient client = HttpClient.newHttpClient();
 
@@ -45,9 +44,9 @@ public class EventClient {
 
                     client.send(request, HttpResponse.BodyHandlers.ofString());
                     event.setExecuted(true);
-                } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
-                    // Trate exceções específicas aqui
+                } catch (Exception e) {
+                   throw  new RuntimeException("Error sending event",e);
+
                 }
             }
         }
