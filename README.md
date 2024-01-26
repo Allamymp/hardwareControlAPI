@@ -25,7 +25,13 @@
 ## Sobre
 
 Esta é uma API Restful desenvolvida como suporte ao  uso de hardwares com acesso a requisições HTTP do tipo Json, ela tem por finalidade abstrair do hardware as regras de negócio transferindo-as para a api que é mais modular.
+
 Por motivos acadêmicos a parte de autenticação da api foi abstraida e deixada para implementações futuras. Embora a api possa ser usada separadamente, ela foi pensada como um serviço.
+
+O projeto possui cerca de 32 testes que são executados usando o Junit e um banco de testes h2 que é configurado automaticamente. 
+
+O banco em que o projeto realmente roda é o Postgres ver 16 que é executado via docker juntamente com o projeto. 
+
 
 ## Licença
 
