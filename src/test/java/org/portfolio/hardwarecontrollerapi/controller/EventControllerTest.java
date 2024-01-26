@@ -1,16 +1,16 @@
 package org.portfolio.hardwarecontrollerapi.controller;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.portfolio.hardwarecontrollerapi.model.entities.Event;
 import org.portfolio.hardwarecontrollerapi.model.entities.Hardware;
 import org.portfolio.hardwarecontrollerapi.model.record.EventRequestRecord;
 import org.portfolio.hardwarecontrollerapi.service.EventService;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -19,6 +19,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+
+@SpringBootTest
+@ActiveProfiles("test")
 class EventControllerTest {
 
     @Mock
@@ -27,10 +30,6 @@ class EventControllerTest {
     @InjectMocks
     private EventController eventController;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     void create() {

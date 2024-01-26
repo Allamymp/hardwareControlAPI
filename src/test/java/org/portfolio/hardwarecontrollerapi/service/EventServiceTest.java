@@ -1,10 +1,8 @@
 package org.portfolio.hardwarecontrollerapi.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.portfolio.hardwarecontrollerapi.client.EventClient;
 import org.portfolio.hardwarecontrollerapi.exception.NotFoundEntityException;
 import org.portfolio.hardwarecontrollerapi.model.entities.Event;
@@ -12,6 +10,8 @@ import org.portfolio.hardwarecontrollerapi.model.entities.Hardware;
 import org.portfolio.hardwarecontrollerapi.model.record.EventRequestRecord;
 import org.portfolio.hardwarecontrollerapi.repository.EventRepository;
 import org.portfolio.hardwarecontrollerapi.repository.HardWareRepository;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+
+
+@SpringBootTest
+@ActiveProfiles("test")
 class EventServiceTest {
 
     @Mock
@@ -33,11 +37,6 @@ class EventServiceTest {
 
     @InjectMocks
     private EventService eventService;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     void create() {

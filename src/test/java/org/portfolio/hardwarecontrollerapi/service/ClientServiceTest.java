@@ -7,6 +7,7 @@ import org.portfolio.hardwarecontrollerapi.model.entities.Client;
 import org.portfolio.hardwarecontrollerapi.model.record.ClientRequestRecord;
 import org.portfolio.hardwarecontrollerapi.repository.ClientRepository;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class ClientServiceTest {
 
     @Mock

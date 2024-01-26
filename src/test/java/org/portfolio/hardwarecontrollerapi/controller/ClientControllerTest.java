@@ -5,8 +5,10 @@ import org.portfolio.hardwarecontrollerapi.model.entities.Client;
 import org.portfolio.hardwarecontrollerapi.model.record.ClientRequestRecord;
 import org.portfolio.hardwarecontrollerapi.model.record.ClientResponseRecord;
 import org.portfolio.hardwarecontrollerapi.service.ClientService;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +16,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+
+@SpringBootTest
+@ActiveProfiles("test")
 class ClientControllerTest {
 
     private final ClientService clientService = mock(ClientService.class);

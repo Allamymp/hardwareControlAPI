@@ -8,6 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class HardwareControllerApiApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(HardwareControllerApiApplication.class, args);
 	}
 
