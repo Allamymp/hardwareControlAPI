@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Event {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     @JsonBackReference
